@@ -1,4 +1,3 @@
-console.log('hello everybody~')
+console.log("hello everybody~");
 
-window.location.href='http://www/google.com';  
-
+window.location.href = "http://www/google.com";
