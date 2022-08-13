@@ -13,11 +13,15 @@ function readFile(filesName, encoding) {
     });}
 
 
+
+//試著用IIFE包async函式
+
+
     async function test(){
 
 try{
  let fileResult= await readFile("test.txt", "utf-8");
- console.log("yaaaa~~~成功印出", fileResult)
+ console.log("await", fileResult)
 }
 catch(err){
 console.error("發生錯誤",err)

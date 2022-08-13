@@ -15,11 +15,15 @@ const fs = require("fs");
 function readFile(filesName, encoding) {
   // executor 本身也是一個函式 有兩個參數 resolve  reject
   return new Promise((resolve, reject) => {
+
+    //非同步工作
     fs.readFile(filesName, encoding, (err, data) => {
       if (err) {
-        reject(console.error("發生錯誤", err));
+        // reject(console.error("發生錯誤", err)); =>不好的寫法 錯誤訊息應給別外包公司決定
+        return reject(err);  //後續會執行所以加上return小保障
       } else {
-        resolve(data);
+        console.log('inside')
+        resolve(data); //這行也是會執行只是有加判斷條件所以不會回傳 if(status===pending) promiser status -> fulfilled
       }
     });
   });
