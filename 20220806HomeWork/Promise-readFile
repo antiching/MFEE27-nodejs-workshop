@@ -11,32 +11,57 @@ const fs = require("fs");
 //     console.log(data);
 //   });
 
+/*
 // 把 readfile 改成 promise 版本（自己包成 Promise）
 function readFile(filesName, encoding) {
   // executor 本身也是一個函式 有兩個參數 resolve  reject
   return new Promise((resolve, reject) => {
-
     //非同步工作
     fs.readFile(filesName, encoding, (err, data) => {
       if (err) {
         // reject(console.error("發生錯誤", err)); =>不好的寫法 錯誤訊息應給別外包公司決定
-        return reject(err);  //後續會執行所以加上return小保障
+        return reject(err); //後續會執行所以加上return小保障
       } else {
-        console.log('inside')
+        console.log("inside");
         resolve(data); //這行也是會執行只是有加判斷條件所以不會回傳 if(status===pending) promiser status -> fulfilled
       }
     });
   });
 }
 
-readFile("test.txt", "utf-8")
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    // 用來接住 reject
-    console.error("在 promise 發生錯誤:", err);
+*/
+
+let p = new Promise((resolve, reject) => {
+  fs.readFile("test1.txt", "utf-8", (err, data) => {
+    if (err) {
+      return reject(err); //promise status狀態變為->rejected
+      //防止後面的程式碼被印出來  保險起見加上return
+    }
+    resolve(data); //這行有被呼叫只是說有加上判斷式 promise status -> fulfilled
+    //若（status === pending）才會執行
+    console.log("這行就算是reject已回傳最終值仍會被執行 所以最好加上return")
   });
-  
+});
 
+p.then((data) => {
+  console.log(data);
+}).catch
+  (console.error);
+//   ((err) => {
+//   console.error(err);
+// });
 
+//
+
+function test(cb) {
+  console.log(cb);
+  // cb();
+}
+
+function param() {
+  console.log("param");
+}
+
+//diff ?
+test(param); //把函式當作參數
+test(param());

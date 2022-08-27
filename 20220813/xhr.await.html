@@ -57,12 +57,14 @@
             if (xhr.status === 200) {
               resolve(xhr.responseText);
             } else {
+              //有連到server但是對方回覆失敗
               reject(xhr.status);
             }
           });
 
           xhr.onerror = function (event) {
-            responseDom.innerHTML = `XHR 非同步請求錯誤`;
+            // responseDom.innerHTML = `XHR 非同步請求錯誤`;
+            reject(`XHR 非同步請求錯誤 這裡的錯誤是連不到`);
           };
 
           // method, url, async (default: true)
@@ -74,16 +76,17 @@
       }
 
       var asyncBtn = document.getElementById("asyncBtn");
-      asyncBtn.addEventListener("click", function () {
+
+      
+      asyncBtn.addEventListener("click", async function () {
         responseDom.innerText = "開始「非」同步請求";
 
-        xhrPromise("GET", "http://54.71.133.152:3000")
-          .then((data) => {
-            responseDom.innerHTML = `非同步請求已回覆 ${data}`;
-          })
-          .catch((err) => {
-            responseDom.innerHTML = `非同步請求失敗，狀態碼 ${err}`;
-          });
+        try {
+          let xhrResult = await xhrPromise("GET", "http://54.71.133.152:3000");
+          responseDom.innerHTML = `非同步請求已回覆 ${xhrResult}`;
+        } catch (err) {
+          responseDom.innerHTML = `非同步請求失敗，狀態碼 ${err}`;
+        }
       });
     </script>
   </body>

@@ -1,14 +1,21 @@
+<!-- //XMLHTTPRequest瀏覽器裡用來發出http request的API
+// 不只可傳ＸＭＬ還可以傳純字串...等
+
+//JSON比較精簡傳輸速度快且是JS原生的 -->
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>XHR</title>
+    <meta charset= "UTF-8" />
+    <title>XHR-ajax底層</title>
   </head>
   <body>
     <button id="syncBtn">同步</button>
     <button id="asyncBtn">非同步</button>
     <button id="countBtn">測試按鈕</button>
     <div id="count">0</div>
-    <div id="response">message</div>
+    <div id="response">message</div> 
+
 
     <script>
       // test url: http://54.71.133.152:3000/
@@ -20,6 +27,8 @@
         responseDom.innerText = '開始同步請求';
         // 實作同步請求
         var xhr = new XMLHttpRequest();
+        console.log(xhr);
+        // 事件觸發的同時不代表已經載入完成所以後面要帶上cb
         xhr.addEventListener('load', function () {
           if (xhr.status === 200) {
             responseDom.innerHTML = `同步請求已回覆 ${xhr.responseText}`;
@@ -33,8 +42,8 @@
         };
 
         // method, url, async (default: true)
-        xhr.open('GET', 'http://54.71.133.152:3000', false);
-        xhr.send();
+        xhr.open('GET', 'http://54.71.133.152:3000', false);//設定
+        xhr.send(); //送出
       });
 
 
@@ -43,7 +52,7 @@
       var asyncBtn = document.getElementById('asyncBtn');
       asyncBtn.addEventListener('click', function () {
         responseDom.innerText = '開始「非」同步請求';
-        // 實作非同步請求
+        //TODO 實作非同步請求
         var xhr = new XMLHttpRequest();
         xhr.addEventListener('load', function () {
           if (xhr.status === 200) {
@@ -58,7 +67,8 @@
         };
 
         // method, url, async (default: true)
-        // GET, POST, UPDATE, DELETE, PUT, PATCH,...
+        //   GET, POST, UPDATE, DELETE, PUT, PATCH,...
+        // => method和url是一組的若method用錯會報錯
         xhr.open('GET', 'http://54.71.133.152:3000', true);
         xhr.send();
       });

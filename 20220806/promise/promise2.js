@@ -1,6 +1,7 @@
 function doWork(job, timer) {
     //非同步運算
     return new Promise((resolve, reject) => {
+      //新增一個Promise物件 建構時要丟一個executer
       //為了模擬非同步工作 [一定會成功]
       setTimeout(() => {
         let dt = new Date();
