@@ -16,7 +16,8 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/stock/:stockId" element={<StockDetails />}>
+        <Route path="/stock/:stockId" element={<StockDetails />}> 
+          {/* FIXME 下面這一行的用意？ */}
           <Route path=":currentPage" element={<StockDetails />} />
         </Route>
         <Route path="*" element={<NotFound />} />
@@ -25,4 +26,5 @@ function App() {
   );
 }
 
+//
 export default App;
