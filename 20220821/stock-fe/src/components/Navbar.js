@@ -25,15 +25,15 @@ const Navbar = () => {
           登出
         </Link>
         {/* 登入前顯示的 */}
-        <NavLink to="/login" className="text-xl text-gray-700 text-opacity-70 mx-3 md:mx-6 hover:text-opacity-90" activestyle={{ fontWeight: 'bold', color: '#3B82F6' }}>
-          登入
+        <NavLink to="/chatroom" className="text-xl text-gray-700 text-opacity-70 mx-3 md:mx-6 hover:text-opacity-90" activestyle={{ fontWeight: 'bold', color: '#3B82F6' }}>
+          聊天室
         </NavLink>
         <NavLink to="/register" className="text-xl text-gray-700 text-opacity-70 mx-3 md:mx-6 hover:text-opacity-90" activestyle={{ fontWeight: 'bold', color: '#3B82F6' }}>
           註冊
         </NavLink>
+
       </div>
     </nav>
   );
 };
-
 export default Navbar;

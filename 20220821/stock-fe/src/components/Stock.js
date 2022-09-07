@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { API_URL } from "../utlis/config";
+import { API_URL } from "../utils/config";
 
 const Stock = () => {
   const [error, setError] = useState(null);

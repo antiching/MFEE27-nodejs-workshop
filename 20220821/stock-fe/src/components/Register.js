@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { API_URL } from "../utlis/config";
+import { API_URL } from "../utils/config";
 
 const Register = () => {
   //物件管理
@@ -46,6 +46,11 @@ const Register = () => {
     } catch (e) {
       console.error(`register`,e);
     }
+  }
+
+
+  function handleUpload(e) {
+    
   }
 
   return (
@@ -114,10 +119,12 @@ const Register = () => {
         />
       </div>
       <div className="mb-8 text-2xl">
-        <label htmlFor="photo" className="flex mb-2 w-32">
+        <label
+          htmlFor="photo" className="flex mb-2 w-32">
           圖片
         </label>
         <input
+          onChange={handleUpload}
           className="w-full border-2 border-purple-200 rounded-md h-10 focus:outline-none focus:border-purple-400 px-2"
           type="file"
           id="photo"
